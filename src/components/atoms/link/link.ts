@@ -11,6 +11,7 @@ export class AppLink extends LitElement {
   static get styles() {
     return css`
       a {
+          text-decoration: none;
         margin: 5px;
       }
     `;
@@ -21,7 +22,7 @@ export class AppLink extends LitElement {
   }
   render() {
     return html`
-      <a href="${this.href}" @click="${this.linkClick}">
+      <a href="${this.href}" @click="${this.linkClick}" target=${this.target}>
         <slot></slot>
       </a>
     `;

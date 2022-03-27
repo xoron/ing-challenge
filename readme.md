@@ -1,10 +1,25 @@
 # todo:
-parcel
+rollup
 linting
-test
-coverage
-e2e testing
+- no unused exports
+- no unused vars
+- no unused imports
+web test runner
+- coverage?
 lion components
+    - pagination
+github action
+- lint
+- test
+- pages
+pagination
+comments component
+remove `any` when finished
+
+
+
+
+
 
 
 

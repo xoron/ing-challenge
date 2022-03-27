@@ -12,7 +12,10 @@
     "parcel": "^2.4.0"
   },
   "dependencies": {
+    "@kor-ui/kor": "^1.9.1",
+    "date-fns": "^2.28.0",
     "lit": "^2.2.1",
-    "lit-element-router": "^2.0.3"
+    "lit-element-router": "^2.0.3",
+    "lit-element-state": "^1.7.0"
   }
 }
