@@ -1,7 +1,7 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import { fetchItem } from '../../../api/utils';
-import { formatDistance, subDays } from 'date-fns'
+import { formatDistance } from 'date-fns'
 import '@kor-ui/kor/components/accordion'
 import { observeState } from 'lit-element-state';
 import { appState } from '../../../state/appState';

@@ -15,8 +15,9 @@ github action
 pagination
 comments component
 remove `any` when finished
-
-
+fix global app state
+refactor api utils to be more concise
+"this.currentPage" in pagination not updating
 
 
 

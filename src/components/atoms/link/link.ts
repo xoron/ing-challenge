@@ -5,7 +5,8 @@ import { navigator } from "lit-element-router";
 export class AppLink extends LitElement {
   static get properties() {
     return {
-      href: { type: String }
+      href: { type: String },
+      target: { type: String }
     };
   }
   static get styles() {
@@ -22,7 +23,7 @@ export class AppLink extends LitElement {
   }
   render() {
     return html`
-      <a href="${this.href}" @click="${this.linkClick}" target=${this.target}>
+      <a href="${this.href}" @click="${this.linkClick}" target="${this.target}">
         <slot></slot>
       </a>
     `;

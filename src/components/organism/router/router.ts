@@ -96,9 +96,6 @@ export class AppRouter extends observeState(LitElement) {
             <app-link href="/hn/show">
               <kor-menu-item label="Show HN" toggle="false"></kor-menu-item>
             </app-link>
-            <app-link href="/hn/item/12345"><kor-menu-item label="hn/item/12345" toggle="false"></kor-menu-item></app-link>
-            <app-link href="/info"><kor-menu-item label="Info" toggle="false"></kor-menu-item></app-link>
-            <app-link href="/user/14"><kor-menu-item label="user/14" toggle="false"></kor-menu-item></app-link>
           </nav>
         </kor-pane>
         <kor-card>
