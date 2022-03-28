@@ -13,34 +13,38 @@ import '../../atoms/link/link';
 import '../../molecules/pagination/pagination';
 
 type StoryType = {
-    title,
-    url,
-    id,
-    by,
-    score,
-    time
+    title: string,
+    url: string,
+    id: number,
+    by: string,
+    score: number,
+    time: number
 }
 
 @customElement('app-new-stories')
 @navigator
 export class AppNewStories extends LitElement {
+    // page: string;
+    // navigate(arg0: string) {
+    //     throw new Error('Method not implemented.');
+    // }
 
-    constructor(props) {
+    constructor() {
         super();
         fetchStories('https://hacker-news.firebaseio.com/v0/newstories.json')
-            .then(result => {
+            .then((result: string[]) => {
                 this.allNewStories = result;
-                return this.fetchStoryDetails(this.page);
+                return this.fetchStoryDetails(parseInt(this.page));
             })
-            .then(detailedResults => {
+            .then((detailedResults: StoryType[]) => {
                 this.stories = detailedResults;
-                this.update();
+                this.update(new Map());
             })
-        
-        window.addEventListener('current-changed', console.log)
+        this.page = '1';
+        // window.addEventListener('current-changed', console.log)
       }
 
-      fetchStoryDetails = (currentPageNumber) => {
+      fetchStoryDetails = (currentPageNumber: number) => {
         const pageSize = 30;
         const storiesToFetch = this.allNewStories.slice((currentPageNumber - 1) * pageSize, currentPageNumber * pageSize)
 
@@ -50,12 +54,12 @@ export class AppNewStories extends LitElement {
             );
       }
 
-      goToPage = (newPageNumber) => {
+      goToPage = (newPageNumber: number) => {
         this.navigate(`/hn/new?page=${newPageNumber}`)
         this.fetchStoryDetails(newPageNumber)
             .then(detailedResults => {
                 this.stories = detailedResults;
-                this.update();
+                this.update(new Map());
             })
       }
 
@@ -86,7 +90,7 @@ export class AppNewStories extends LitElement {
 
   // Declare reactive properties
   @property({type: Array})
-  allNewStories: number[] = [];
+  allNewStories: string[] = [];
   @property({type: Array})
   stories: StoryType[] = [];
 //   @property({attribute: false})
@@ -104,6 +108,14 @@ export class AppNewStories extends LitElement {
     const currentPage = this.page;
     return html`
         <h2>New stories</h2>
+
+        <app-pagination
+            .goToFirstPage=${this.goToFirstPage}
+            .goToLastPage=${this.goToLastPage}
+            .goToPreviousPage=${this.goToPreviousPage}
+            .goToNextPage=${this.goToNextPage}
+            .currentPage=${currentPage}
+        ></app-pagination>
 
         ${this.stories.length
             ? html`<kor-table readonly>

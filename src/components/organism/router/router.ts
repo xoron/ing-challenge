@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit-element';
-import { router } from 'lit-element-router';
+import { router, navigator } from 'lit-element-router';
 import { customElement } from 'lit/decorators';
 
 import '../../atoms/link/link';
@@ -13,12 +13,21 @@ import '@kor-ui/kor/components/nav-bar'
 import '@kor-ui/kor/components/pane'
 import '@kor-ui/kor/components/menu-item'
 
-import { observeState } from 'lit-element-state';
-import { appState } from '../../../state/appState';
+// import { observeState } from 'lit-element-state';
+// import { appState } from '../../../state/appState';
 
 @customElement('app-router')
+// @observeState
 @router
-export class AppRouter extends observeState(LitElement) {
+@navigator
+export class AppRouter extends (LitElement) {
+  route: string;
+  params: {
+    itemId?: string,
+  };
+  query: {
+    page?: string
+  };
   static get properties() {
     return {
       route: { type: String },
@@ -49,7 +58,7 @@ export class AppRouter extends observeState(LitElement) {
     }, {
       name: 'not-found',
       pattern: '*',
-      callback: (route) => route === 'not-found'
+      callback: (route: string) => route === 'not-found'
         && window.location.replace('/hn/top')
     }];
   }
@@ -65,20 +74,16 @@ export class AppRouter extends observeState(LitElement) {
     // appState.heading = 'bbb';
   }
  
-  router(route, params, query, data) {
+  router(route: string, params: { itemId?: string | undefined; }, query: { page?: string | undefined; }, data: any) {
     this.route = route;
     this.params = params;
     this.query = query;
-    console.log('>>>', route, params, query, data );
   }
  
   render() {
-    console.log('rendering router', this.params.itemId, appState)
-    console.log({ appState })
-    debugger;
     return html`
       <kor-page>
-        <kor-app-bar slot="top"><img src="https://news.ycombinator.com/y18.gif" /><h1>Hacker News - ${appState.heading}</h1></kor-app-bar>
+        <kor-app-bar slot="top"><img src="https://news.ycombinator.com/y18.gif" /><h1>Hacker News - ${'appState.heading'}</h1></kor-app-bar>
         <kor-pane slot="left">
           <nav>
             <app-link href="/hn/new">
@@ -100,14 +105,12 @@ export class AppRouter extends observeState(LitElement) {
         </kor-pane>
         <kor-card>
           <app-router-contents active-route=${this.route}>
-              <app-new-stories .page=${this.query.page ?? 1} route='new-stories'></app-new-stories>
+              <app-new-stories .page=${this.query.page ?? '1'} route='new-stories'></app-new-stories>
               <h1 route='top-stories'>top</h1>
               <h1 route='best-stories'>best</h1>
               <h1 route='ask-hn'>ask</h1>
               <h1 route='show-hn'>show</h1>
               <app-item-details .itemId=${this.params.itemId} route='item'></app-item-details>
-              <h1 route='info'>Info ${this.query.data}</h1>
-              <h1 route='user'>User ${this.params.id} </h1>
               <h1 route='not-found'>Not Found </h1>
           </app-router-contents>
         </kor-card>

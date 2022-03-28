@@ -1,9 +1,11 @@
 # todo:
 rollup
+    - need to finish off build functionality
 linting
 - no unused exports
 - no unused vars
 - no unused imports
+prettier
 web test runner
 - coverage?
 lion components

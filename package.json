@@ -1,22 +1,42 @@
 {
   "name": "ing-challenge",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/xoron/ing-challenge.git",
   "author": "xoron <rmaher84@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "build": "rimraf dist && tsc && rollup -c rollup.config.js",
+    "build:parcel": "rimraf dist && parcel build src/index.html --public-url ./",
+    "serve": "serve dist/",
+    "lint": "eslint src/**/*.ts"
   },
   "devDependencies": {
-    "parcel": "^2.4.0"
+    "@open-wc/building-rollup": "^2.0.1",
+    "@rollup/plugin-html": "^0.2.4",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "deepmerge": "^4.2.2",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "jest": "^27.5.1",
+    "parcel": "^2.4.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.1",
+    "serve": "^13.0.2"
   },
   "dependencies": {
     "@kor-ui/kor": "^1.9.1",
     "@lion/pagination": "^0.7.0",
+    "@swc/helpers": "^0.3.8",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
     "date-fns": "^2.28.0",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
     "lit": "^2.2.1",
+    "lit-element": "^3.2.0",
     "lit-element-router": "^2.0.3",
-    "lit-element-state": "^1.7.0"
+    "lit-element-state": "^1.7.0",
+    "typescript": "^4.6.3"
   }
 }

@@ -14,6 +14,11 @@ export class AppPagination extends LitElement {
   // Declare reactive properties
   @property()
   name?: string = 'World';
+  goToFirstPage!: () => void;
+  goToPreviousPage!: () => void;
+  currentPage!: string;
+  goToNextPage!: () => void;
+  goToLastPage!: () => void;
 
   // Render the UI as a function of component state
   render() {

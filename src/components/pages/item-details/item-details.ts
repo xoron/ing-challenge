@@ -4,40 +4,48 @@ import { fetchItem } from '../../../api/utils';
 import { navigator } from "lit-element-router";
 import '@kor-ui/kor/components/tag'
 import '../../molecules/comment/comment';
-import { observeState } from 'lit-element-state';
-import { appState } from '../../../state/appState';
+// import { observeState } from 'lit-element-state';
+// import { appState } from '../../../state/appState';
 import { formatDistance } from 'date-fns'
 
-@navigator
+type ItemType = {
+  title: string,
+  url: string,
+  score: number,
+  by: string,
+  time: number,
+  kids: string[]
+}
+
 @customElement('app-item-details')
-export class AppItemDetails extends observeState(LitElement) {
+// @observeState
+@navigator
+export class AppItemDetails extends (LitElement) {
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
     a {
         text-decoration: none;
     }
   `;
+  itemId?: string;
 
   constructor() {
       super();
-      console.log('constructor called', this.itemId)
-      console.log({ appState })
 
     //   appState.heading = 'ccc'
   }
 
   fetchStoryItem = () => {
     fetchItem(`https://hacker-news.firebaseio.com/v0/item/${this.itemId}.json`)
-          .then(result => {
+          .then((result: ItemType) => {
               this.item = result;
-              console.log({ result })
-              this.update();
+              this.update(new Map());
           })
   }
 
   // Declare reactive properties
-  @property()
-  item?: any = null;
+  @property({ attribute: false })
+  item?: ItemType;
 
   // Render the UI as a function of component state
   render() {
