@@ -1,8 +1,5 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import "./components/molecules/navigation/app-navigation";
-import "./components/atoms/top-bar/top-bar";
-import "./components/organism/content/content";
 import "./components/organism/router/router";
 
 @customElement("app-main")

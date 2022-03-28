@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:import/recommended"],
+  extends: ["plugin:import/recommended", "eslint:recommended"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -32,5 +32,7 @@ module.exports = {
         tsx: "never",
       },
     ],
+    "import/no-unused-modules": ["warn", {"unusedExports": true}],
+    "no-unused-vars": ["warn", { "vars": "all" }]
   },
 };

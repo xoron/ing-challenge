@@ -3,7 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import { fetchItem } from "../../../api/utils";
 import { formatDistance } from "date-fns";
 import "@kor-ui/kor/components/accordion";
-// import { observeState } from 'lit-element-state';
+import { observeState } from 'lit-element-state';
 // import { appState } from '../../../state/appState';
 
 type CommentType = { by: string; time: number; text: string; kids: string[] };

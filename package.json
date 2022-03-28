@@ -10,7 +10,8 @@
     "build:parcel": "rimraf dist && parcel build src/index.html --public-url ./",
     "serve": "serve dist/",
     "lint": "eslint src/**/*.ts",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "detect-deadcode": "ts-prune"
   },
   "devDependencies": {
     "@open-wc/building-rollup": "^2.0.1",
@@ -23,7 +24,8 @@
     "prettier": "^2.6.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.70.1",
-    "serve": "^13.0.2"
+    "serve": "^13.0.2",
+    "ts-prune": "^0.10.3"
   },
   "dependencies": {
     "@kor-ui/kor": "^1.9.1",
