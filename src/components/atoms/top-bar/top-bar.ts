@@ -1,7 +1,7 @@
-import {LitElement, css, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { LitElement, css, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
 
-@customElement('top-bar')
+@customElement("top-bar")
 export class TopBar extends LitElement {
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
@@ -12,7 +12,7 @@ export class TopBar extends LitElement {
 
   // Declare reactive properties
   @property()
-  name?: string = 'World';
+  name?: string = "World";
 
   // Render the UI as a function of component state
   render() {

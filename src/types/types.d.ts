@@ -1,1 +1,1 @@
-declare module 'lit-element-state';
+declare module "lit-element-state";

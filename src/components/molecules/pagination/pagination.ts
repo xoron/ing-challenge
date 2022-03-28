@@ -1,8 +1,8 @@
-import {LitElement, css, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
-import '@kor-ui/kor/components/button'
+import { LitElement, css, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import "@kor-ui/kor/components/button";
 
-@customElement('app-pagination')
+@customElement("app-pagination")
 export class AppPagination extends LitElement {
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
@@ -13,7 +13,7 @@ export class AppPagination extends LitElement {
 
   // Declare reactive properties
   @property()
-  name?: string = 'World';
+  name?: string = "World";
   goToFirstPage!: () => void;
   goToPreviousPage!: () => void;
   currentPage!: string;
@@ -24,11 +24,11 @@ export class AppPagination extends LitElement {
   render() {
     return html`
       <kor-card slot="bottom" flex-direction="row">
-          <kor-button @click=${this.goToFirstPage}><<</kor-button>
-          <kor-button @click=${this.goToPreviousPage}><</kor-button>
-          <kor-button>${this.currentPage}</kor-button>
-          <kor-button @click=${this.goToNextPage}>></kor-button>
-          <kor-button @click=${this.goToLastPage}>>></kor-button>
+        <kor-button @click=${this.goToFirstPage}><<</kor-button>
+        <kor-button @click=${this.goToPreviousPage}><</kor-button>
+        <kor-button>${this.currentPage}</kor-button>
+        <kor-button @click=${this.goToNextPage}>></kor-button>
+        <kor-button @click=${this.goToLastPage}>>></kor-button>
       </kor-card>
     `;
   }
