@@ -13,6 +13,8 @@ import "@kor-ui/kor/components/nav-bar";
 import "@kor-ui/kor/components/pane";
 import "@kor-ui/kor/components/menu-item";
 
+import "../../templates/list-view/list-view";
+
 // import { observeState } from 'lit-element-state';
 // import { appState } from '../../../state/appState';
 
@@ -124,14 +126,31 @@ export class AppRouter extends LitElement {
         </kor-pane>
         <kor-card>
           <app-router-contents active-route=${this.route}>
-            <app-new-stories
+            <app-list-view
               .page=${this.query.page ?? "1"}
+              .listName=${'new'}
               route="new-stories"
-            ></app-new-stories>
-            <h1 route="top-stories">top</h1>
-            <h1 route="best-stories">best</h1>
-            <h1 route="ask-hn">ask</h1>
-            <h1 route="show-hn">show</h1>
+            ></app-list-view>
+            <app-list-view
+              .page=${this.query.page ?? "1"}
+              .listName=${'top'}
+              route="top-stories"
+            ></app-list-view>
+            <app-list-view
+              .page=${this.query.page ?? "1"}
+              .listName=${'best'}
+              route="best-stories"
+            ></app-list-view>
+            <app-list-view
+              .page=${this.query.page ?? "1"}
+              .listName=${'ask'}
+              route="ask-hn"
+            ></app-list-view>
+            <app-list-view
+              .page=${this.query.page ?? "1"}
+              .listName=${'show'}
+              route="show-hn"
+            ></app-list-view>
             <app-item-details
               .itemId=${this.params.itemId}
               route="item"

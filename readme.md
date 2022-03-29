@@ -1,10 +1,9 @@
 # todo:
 rollup
     - need to finish off build functionality
+    - cdn functionality
+    - unable to get it to work with parcel because of known issue: https://github.com/parcel-bundler/parcel/issues/2421
 linting
-- no unused exports
-- no unused vars
-- no unused imports
 prettier
 web test runner
 - coverage?
@@ -15,6 +14,8 @@ github action
 - test
 - pages
 pagination
+add pages
+
 comments component
 remove `any` when finished
 fix global app state

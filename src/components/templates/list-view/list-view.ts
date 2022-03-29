@@ -12,6 +12,10 @@ import "@kor-ui/kor/components/table";
 import "../../atoms/link/link";
 import "../../molecules/pagination/pagination";
 
+const capitalizeFirstLetter = (listName: String) => {
+    return listName.charAt(0).toUpperCase() + listName.slice(1);
+  }
+
 type StoryType = {
   title: string;
   url: string;
@@ -21,17 +25,20 @@ type StoryType = {
   time: number;
 };
 
-@customElement("app-new-stories")
+@customElement("app-list-view")
 @navigator
-export class AppNewStories extends LitElement {
-  // page: string;
-  // navigate(arg0: string) {
-  //     throw new Error('Method not implemented.');
-  // }
+export class AppListView extends LitElement {
 
   constructor() {
     super();
-    fetchStories("https://hacker-news.firebaseio.com/v0/newstories.json")
+    this.page = "1";
+    if (this.listName) this.fetchAllStories(this.listName)
+    // window.addEventListener('current-changed', console.log)
+  }
+
+  fetchAllStories = (listName: string) => {
+      this.requestedStories = true;
+    fetchStories(`https://hacker-news.firebaseio.com/v0/${this.listName}stories.json`)
       .then((result: string[]) => {
         this.allNewStories = result;
         return this.fetchStoryDetails(parseInt(this.page));
@@ -40,8 +47,6 @@ export class AppNewStories extends LitElement {
         this.stories = detailedResults;
         this.update(new Map());
       });
-    this.page = "1";
-    // window.addEventListener('current-changed', console.log)
   }
 
   fetchStoryDetails = (currentPageNumber: number) => {
@@ -59,7 +64,7 @@ export class AppNewStories extends LitElement {
   };
 
   goToPage = (newPageNumber: number) => {
-    this.navigate(`/hn/new?page=${newPageNumber}`);
+    this.navigate(`/hn/${this.listName}?page=${newPageNumber}`);
     this.fetchStoryDetails(newPageNumber).then((detailedResults) => {
       this.stories = detailedResults;
       this.update(new Map());
@@ -84,33 +89,21 @@ export class AppNewStories extends LitElement {
     this.goToPage(parseInt(this.page) - 1 || 1);
   };
 
-  //   // Define scoped styles right with your component, in plain CSS
-  //   static styles = css`
-  //     :host {
-  //       color: blue;
-  //     }
-  //   `;
-
   // Declare reactive properties
   @property({ type: Array })
   allNewStories: string[] = [];
   @property({ type: Array })
   stories: StoryType[] = [];
-  //   @property({attribute: false})
-  //   pageNumber: number = 0;
-  //   @property({attribute: false})
-  //   query: any = {};
-
-  //   router(route, params, query, data) {
-  //     this.query = query;
-  //     console.log('>>>>>>', route, params, query, data);
-  //   }
+  @property({ type: Boolean })
+  requestedStories: Boolean = false;
 
   // Render the UI as a function of component state
   render() {
     const currentPage = this.page;
+    if (!this.requestedStories && this.listName) this.fetchAllStories(this.listName);
+
     return html`
-      <h2>New stories</h2>
+      <h2>${capitalizeFirstLetter(this.listName)} stories</h2>
 
       <app-pagination
         .goToFirstPage=${this.goToFirstPage}
