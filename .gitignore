@@ -4,3 +4,4 @@ dist/
 test-results/
 out-tsc/
 yarn-error.log
+coverage/*
