@@ -1,5 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { AppMain } from '../index';
+import '../index';
 
 describe('renders main app', () => {
     it('passes the a11y audit', async () => {

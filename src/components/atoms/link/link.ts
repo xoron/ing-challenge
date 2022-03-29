@@ -28,11 +28,6 @@ export class AppLink extends LitElement {
     const href = this.href;
     const target = this.target;
 
-    console.log({
-      href: href,
-      target: target,
-    })
-
     return html`
       <a
         @click=${this.linkClick}
