@@ -4,6 +4,7 @@ import { fetchItem } from "../../../api/utils";
 import { navigator } from "lit-element-router";
 import "@kor-ui/kor/components/tag";
 import "../../molecules/comment/comment";
+import "../../atoms/link/link";
 // import { observeState } from 'lit-element-state';
 // import { appState } from '../../../state/appState';
 import { formatDistance } from "date-fns";
@@ -53,12 +54,14 @@ export class AppItemDetails extends LitElement {
     if (!this.item && this.itemId) {
       this.fetchStoryItem();
     }
+    const linkUrl = this.item?.url;
+    console.log({ linkUrl })
     return html`
       ${this.item &&
       html`
-        <a href=${this.item.url} target="_blank"
+        <app-link href=${this.item.url} .target=${"_blank"} link=${this.item.url}
           ><kor-tag label="Title: ${this.item.title}"></kor-tag
-        ></a>
+        ></app-link>
         <kor-tag label="Score: ${this.item.score}"></kor-tag>
         <kor-tag label="Username: ${this.item.by}"></kor-tag>
         <kor-tag

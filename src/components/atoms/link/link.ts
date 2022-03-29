@@ -1,14 +1,10 @@
 import { LitElement, html, css } from "lit-element";
 import { navigator } from "lit-element-router";
 import { customElement } from "lit/decorators";
-import { ifDefined } from "lit/directives/if-defined";
 
 @customElement("app-link")
 @navigator
 export class AppLink extends LitElement {
-  // navigate?: (s: string) => void;
-  href: string;
-  target?: "_blank" | "_parent" | "_self" | "_top";
   static get properties() {
     return {
       href: { type: String },
@@ -20,26 +16,40 @@ export class AppLink extends LitElement {
       a {
         text-decoration: none;
         margin: 5px;
+        cursor: pointer;
       }
     `;
   }
   constructor() {
     super();
-    this.href = "";
+    // this.href = "";
   }
   render() {
+    const href = this.href;
+    const target = this.target;
+
+    console.log({
+      href: href,
+      target: target,
+    })
+
     return html`
       <a
-        href="${this.href}"
-        @click="${this.linkClick}"
-        target="${ifDefined(this.target)}"
+        @click=${this.linkClick}
+        target=${target}
+        href=${href}
       >
         <slot></slot>
       </a>
     `;
   }
   linkClick(event: { preventDefault: () => void }) {
-    event.preventDefault();
-    this.navigate?.(this.href);
+
+    if (!this.target || (this.target !== '_blank')) {
+      event.preventDefault();
+      this.navigate(this.href);
+    } else {
+      window.open(this.href)
+    }
   }
 }

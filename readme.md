@@ -15,7 +15,11 @@ github action
 - pages
 pagination
 add pages
-
+- new
+- top
+- best
+- ask
+- show
 comments component
 remove `any` when finished
 fix global app state
