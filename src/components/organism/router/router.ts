@@ -4,7 +4,6 @@ import { customElement } from "lit/decorators";
 
 import "../../atoms/link/link";
 import "./router-contents";
-import "../../pages/new-stories/new-stories";
 import "../../pages/item-details/item-details";
 import "@kor-ui/kor/components/card";
 import "@kor-ui/kor/components/page";
