@@ -29,22 +29,17 @@ export class AppLink extends LitElement {
     const target = this.target;
 
     return html`
-      <a
-        @click=${this.linkClick}
-        target=${target}
-        href=${href}
-      >
+      <a @click=${this.linkClick} target=${target} href=${href}>
         <slot></slot>
       </a>
     `;
   }
   linkClick(event: { preventDefault: () => void }) {
-
-    if (!this.target || (this.target !== '_blank')) {
+    if (!this.target || this.target !== "_blank") {
       event.preventDefault();
       this.navigate(this.href);
     } else {
-      window.open(this.href)
+      window.open(this.href);
     }
   }
 }

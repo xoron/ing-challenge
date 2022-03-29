@@ -32,7 +32,7 @@ module.exports = {
         tsx: "never",
       },
     ],
-    "import/no-unused-modules": ["warn", {"unusedExports": true}],
-    "no-unused-vars": ["warn", { "vars": "all" }]
+    "import/no-unused-modules": ["warn", { unusedExports: true }],
+    "no-unused-vars": ["warn", { vars: "all" }],
   },
 };

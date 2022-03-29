@@ -55,11 +55,14 @@ export class AppItemDetails extends LitElement {
       this.fetchStoryItem();
     }
     const linkUrl = this.item?.url;
-    console.log({ linkUrl })
+    console.log({ linkUrl });
     return html`
       ${this.item &&
       html`
-        <app-link href=${this.item.url} .target=${"_blank"} link=${this.item.url}
+        <app-link
+          href=${this.item.url}
+          .target=${"_blank"}
+          link=${this.item.url}
           ><kor-tag label="Title: ${this.item.title}"></kor-tag
         ></app-link>
         <kor-tag label="Score: ${this.item.score}"></kor-tag>

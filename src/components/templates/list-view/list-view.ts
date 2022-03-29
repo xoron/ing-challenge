@@ -13,8 +13,8 @@ import "../../atoms/link/link";
 import "../../molecules/pagination/pagination";
 
 const capitalizeFirstLetter = (listName: String) => {
-    return listName.charAt(0).toUpperCase() + listName.slice(1);
-  }
+  return listName.charAt(0).toUpperCase() + listName.slice(1);
+};
 
 type StoryType = {
   title: string;
@@ -28,17 +28,18 @@ type StoryType = {
 @customElement("app-list-view")
 @navigator
 export class AppListView extends LitElement {
-
   constructor() {
     super();
     this.page = "1";
-    if (this.listName) this.fetchAllStories(this.listName)
+    if (this.listName) this.fetchAllStories(this.listName);
     // window.addEventListener('current-changed', console.log)
   }
 
   fetchAllStories = (listName: string) => {
-      this.requestedStories = true;
-    fetchStories(`https://hacker-news.firebaseio.com/v0/${this.listName}stories.json`)
+    this.requestedStories = true;
+    fetchStories(
+      `https://hacker-news.firebaseio.com/v0/${this.listName}stories.json`
+    )
       .then((result: string[]) => {
         this.allNewStories = result;
         return this.fetchStoryDetails(parseInt(this.page));
@@ -47,7 +48,7 @@ export class AppListView extends LitElement {
         this.stories = detailedResults;
         this.update(new Map());
       });
-  }
+  };
 
   fetchStoryDetails = (currentPageNumber: number) => {
     const pageSize = 30;
@@ -100,7 +101,8 @@ export class AppListView extends LitElement {
   // Render the UI as a function of component state
   render() {
     const currentPage = this.page;
-    if (!this.requestedStories && this.listName) this.fetchAllStories(this.listName);
+    if (!this.requestedStories && this.listName)
+      this.fetchAllStories(this.listName);
 
     return html`
       <h2>${capitalizeFirstLetter(this.listName)} stories</h2>

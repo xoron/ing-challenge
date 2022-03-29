@@ -127,27 +127,27 @@ export class AppRouter extends LitElement {
           <app-router-contents active-route=${this.route}>
             <app-list-view
               .page=${this.query.page ?? "1"}
-              .listName=${'new'}
+              .listName=${"new"}
               route="new-stories"
             ></app-list-view>
             <app-list-view
               .page=${this.query.page ?? "1"}
-              .listName=${'top'}
+              .listName=${"top"}
               route="top-stories"
             ></app-list-view>
             <app-list-view
               .page=${this.query.page ?? "1"}
-              .listName=${'best'}
+              .listName=${"best"}
               route="best-stories"
             ></app-list-view>
             <app-list-view
               .page=${this.query.page ?? "1"}
-              .listName=${'ask'}
+              .listName=${"ask"}
               route="ask-hn"
             ></app-list-view>
             <app-list-view
               .page=${this.query.page ?? "1"}
-              .listName=${'show'}
+              .listName=${"show"}
               route="show-hn"
             ></app-list-view>
             <app-item-details
