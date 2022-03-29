@@ -8,6 +8,11 @@ export class AppPagination extends LitElement {
   static styles = css`
     :host {
       margin-bottom: 10px;
+      justify-content: center;
+    }
+
+    kor-button {
+      padding: 0 20px;
     }
   `;
 
@@ -28,7 +33,7 @@ export class AppPagination extends LitElement {
   // Render the UI as a function of component state
   render() {
     return html`
-      <kor-card slot="bottom" flex-direction="row">
+      <kor-card slot="bottom" flex-direction="row" jus>
         <kor-button @click=${this.goToFirstPage}><<</kor-button>
         <kor-button @click=${this.goToPreviousPage}><</kor-button>
         <kor-button>${this.currentPage}</kor-button>

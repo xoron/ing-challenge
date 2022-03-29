@@ -55,7 +55,6 @@ export class AppItemDetails extends LitElement {
       this.fetchStoryItem();
     }
     const linkUrl = this.item?.url;
-    console.log({ linkUrl });
     return html`
       ${this.item &&
       html`

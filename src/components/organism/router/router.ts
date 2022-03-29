@@ -14,11 +14,11 @@ import "@kor-ui/kor/components/menu-item";
 
 import "../../templates/list-view/list-view";
 
-// import { observeState } from 'lit-element-state';
-// import { appState } from '../../../state/appState';
+import { observeState } from 'lit-element-state';
+import { appState } from '../../../state/appState';
 
 @customElement("app-router")
-// @observeState
+@observeState
 @router
 @navigator
 export class AppRouter extends LitElement {
@@ -78,7 +78,6 @@ export class AppRouter extends LitElement {
     this.params = {};
     this.query = {};
 
-    // console.log({ appState })
     // debugger;
     // appState.heading = 'bbb';
   }
@@ -99,7 +98,7 @@ export class AppRouter extends LitElement {
       <kor-page>
         <kor-app-bar slot="top"
           ><img src="https://news.ycombinator.com/y18.gif" />
-          <h1>Hacker News - ${"appState.heading"}</h1></kor-app-bar
+          <h1>Hacker News ${appState.heading}</h1></kor-app-bar
         >
         <kor-pane slot="left">
           <nav>

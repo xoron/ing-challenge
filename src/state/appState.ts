@@ -1,9 +1,7 @@
 import { LitState, stateVar } from "lit-element-state";
 
 class AppState extends LitState {
-  @stateVar() heading = "aaaa";
-  @stateVar() counter = 0;
-  @stateVar() asdasd = "dsadsa";
+  @stateVar() heading = "global state management works!";
 }
 
 export const appState = new AppState();

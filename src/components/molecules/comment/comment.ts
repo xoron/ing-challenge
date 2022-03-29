@@ -23,7 +23,6 @@ export class AppComment extends LitElement {
       )
     ).then((allComments) => {
       this.comments = [...allComments];
-      console.log({ allComments });
       this.update(new Map());
     });
   };
@@ -31,8 +30,6 @@ export class AppComment extends LitElement {
   // Declare reactive properties
   @property({ attribute: false })
   comments?: any = [];
-  //   @property({type: Boolean })
-  //   expanded: boolean = true;
   @property({ type: Boolean })
   hasRequestedComments: boolean = false;
   commentIds?: string[];
